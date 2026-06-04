@@ -5,21 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OscarBecerra - Contacto</title>
     <style>
-        /* BASE GENERAL DE ALINEACIÓN Y CENTRADO EN WINDOWS */
+        /* ==========================================
+           1. CONFIGURACIÓN GLOBAL (PULL-TO-REFRESH)
+           ========================================== */
         html, body { 
             margin: 0; 
             padding: 0; 
             width: 100%; 
-            height: 100dvh; 
+            min-height: 100dvh; 
             background-color: #000; 
             display: flex; 
             justify-content: center; 
-            align-items: center; 
-            overflow: hidden;
+            align-items: flex-start; 
+            overflow-x: hidden;      
+            overflow-y: auto;        /* Habilita el gesto de arrastrar para refrescar */
         }
         
         /* ==========================================
-           ESTILOS DEL SPLASH SCREEN (MÓVIL POR DEFECTO)
+           2. ESTILOS DEL SPLASH SCREEN (RESPONSIVO)
            ========================================== */
         #splash-screen {
             position: fixed;
@@ -50,7 +53,7 @@
             height: 100%;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             opacity: 1;
             transition: opacity 0.5s ease-in;
         }
@@ -71,18 +74,17 @@
         }
 
         /* ==========================================
-           ESTILOS ORIGINALES DEL REPOSITORIO
+           3. ESTILOS ORIGINALES DEL REPOSITORIO
            ========================================== */
         .contenedor { 
             width: 100vw;
-            height: 100dvh;
+            min-height: 100dvh;
             display: flex; 
             flex-direction: column; 
             align-items: center; 
             padding-bottom: 20px; 
             box-sizing: border-box;
-            overflow-x: hidden;
-            overflow-y: auto; /* Permite scroll si el contenido desborda verticalmente */
+            overflow: hidden;   
             font-family: Arial, sans-serif; 
             background-color: #000; 
             color: white; 
@@ -164,10 +166,12 @@
 </head>
 <body>
 
+    <!-- Bloque Splash Screen responsivo -->
     <div id="splash-screen">
         <img src="SplashScreenOBM.webp" alt="Splash Screen OBM">
     </div>
 
+    <!-- Contenedor de contenido centrado -->
     <div id="main-content" class="hidden">
         <div class="contenedor">
             
@@ -207,6 +211,7 @@
         </div>
     </div>
 
+    <!-- Script de Temporización y Refresco -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const splash = document.getElementById("splash-screen");
